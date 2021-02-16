@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: nestjs-microservice-example
+  description: Microservice Example NestJS
+  version: "0.1"
+  contact: {}
+tags: []
+servers:
+  - description: dev
+    url: http://localhost
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    CreateCatRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Cat's name
+          example: Minos
+        age:
+          type: integer
+          description: Cat's age
+          example: 1
+        breed:
+          type: string
+          description: yes or no
+          example: "yes"
+      required:
+        - name
+        - age
+        - breed
+    ValidationError:
+      type: object
+      properties:
+        property:
+          type: string
+          description: nombre de campo invalido
+        constraints:
+          type: object
+          description: objecto descriptor de validaciones no satisfechas
+        children:
+          type: array
+          items:
+            description: objecto con validaciones anidadas similar a ValidationError
+            type: object
+    DefaultResponse:
+      type: object
+      properties:
+        error:
+          type: boolean
+          description: indicador de error
+          example: false
+        message:
+          type: string
+          description: mensaje de informacion
+          example: "ok"
+        code:
+          type: integer
+          description: codigo de respuesta
+          example: 200
+        data:
+          description: informacion adicional
+          type: object
+
+paths:
+  "/cats":
+    post:
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CreateCatRequest"
+      responses:
+        "201":
+          description: Registered order response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/DefaultResponse"
