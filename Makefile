@@ -1,3 +1,5 @@
+install:
+	npm install
 up:
 	npm run start:dev
 

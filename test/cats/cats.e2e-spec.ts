@@ -2,17 +2,24 @@ import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { AppModule } from './../../src/app.module';
 import { INestApplication } from '@nestjs/common';
+import { Testinge2emodule } from '../testinge2emodule';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 
-  beforeAll(async () => {
-    const moduleFixture = await Test.createTestingModule({
-      imports: [AppModule]
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
-    await app.init();
+  beforeEach(async () => {
+    app = await Testinge2emodule.create();
+  });
+  describe('when realizas una petición con datos incompletos', () => {
+    it('then se crea el recurso', () => {
+      return request(app.getHttpServer())
+        .post('/cats')
+        .send({
+          age: '1',
+          breed: 'yes'
+        })
+        .expect(400);
+    });
   });
   describe('when realizas una petición con los datos completos', () => {
     it('then se crea el recurso', () => {
