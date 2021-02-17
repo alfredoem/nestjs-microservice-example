@@ -8,7 +8,7 @@ describe('AppController (e2e)', () => {
 
   beforeAll(async () => {
     const moduleFixture = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [AppModule]
     }).compile();
 
     app = moduleFixture.createNestApplication();
@@ -23,8 +23,7 @@ describe('AppController (e2e)', () => {
           age: '1',
           breed: 'yes'
         })
-        .expect(201)
-        .expect('This action adds a new cat');
+        .expect(201);
     });
   });
   describe('when realizas una busqueda con todos los filtros', () => {
@@ -33,7 +32,9 @@ describe('AppController (e2e)', () => {
       return request(app.getHttpServer())
         .get('/cats?limit=' + limit)
         .expect(200)
-        .expect(`This action returns all cats (limit: ${limit} items)`);
+        .then((response) => {
+          expect(response.body).not.toBeNull();
+        });
     });
   });
   describe('when realizas una busqueda especifica', () => {
