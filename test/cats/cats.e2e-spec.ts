@@ -3,6 +3,7 @@ import { Test } from '@nestjs/testing';
 import { AppModule } from './../../src/app.module';
 import { INestApplication } from '@nestjs/common';
 import { Testinge2emodule } from '../testinge2emodule';
+import { response } from 'express';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -30,7 +31,10 @@ describe('AppController (e2e)', () => {
           age: '1',
           breed: 'yes'
         })
-        .expect(201);
+        .expect(201)
+        .then((response) => {
+          expect(response.body.error).toEqual(false);
+        });
     });
   });
   describe('when realizas una busqueda con todos los filtros', () => {
@@ -41,6 +45,7 @@ describe('AppController (e2e)', () => {
         .expect(200)
         .then((response) => {
           expect(response.body).not.toBeNull();
+          expect(response.body.error).toEqual(false);
         });
     });
   });
