@@ -27,7 +27,7 @@ describe('AppController (e2e)', () => {
       return request(app.getHttpServer())
         .post('/cats')
         .send({
-          name: 'Minos',
+          name: 'Greed',
           age: '1',
           breed: 'yes'
         })
@@ -40,11 +40,17 @@ describe('AppController (e2e)', () => {
   describe('when realizas una busqueda con todos los filtros', () => {
     it('then obtienes resultados', () => {
       const limit = 10;
+
+      request(app.getHttpServer()).post('/cats').send({
+        name: 'Grogu',
+        age: '59',
+        breed: 'yes'
+      });
       return request(app.getHttpServer())
         .get('/cats?limit=' + limit)
         .expect(200)
         .then((response) => {
-          expect(response.body).not.toBeNull();
+          expect(response.body.data).not.toBeNull();
           expect(response.body.error).toEqual(false);
         });
     });

@@ -6,24 +6,25 @@ import {
   Body,
   Put,
   Param,
-  Delete, HttpStatus,
+  Delete,
+  HttpStatus
 } from '@nestjs/common';
 import {
   CreateCatDto,
   UpdateCatDto,
   ListAllEntities
-} from './dto/create-cat.dto';
-import { CatService } from './cat.service';
-import { HttpResponse } from '../http-response';
+} from './cats/dto/create-cat.dto';
+import { CatService } from './cats/application/cat.service';
+import { HttpResponse } from './http-response';
 
 @Controller('cats')
 export class CatsController {
   constructor(private catService: CatService) {}
 
   @Post()
-  create(@Body() createCatDto: CreateCatDto) {
+  async create(@Body() createCatDto: CreateCatDto) {
     return new HttpResponse(
-      this.catService.create(createCatDto),
+      await this.catService.create(createCatDto),
       'Datos guardados correctamente.',
       false,
       HttpStatus.CREATED
@@ -31,10 +32,10 @@ export class CatsController {
   }
 
   @Get()
-  findAll(@Query() query: ListAllEntities) {
+  async findAll(@Query() query: ListAllEntities) {
     return new HttpResponse(
-      this.catService.findAll(),
-      'Datos guardados correctamente.',
+      await this.catService.findAll(),
+      'Datos obtenidos correctamente.',
       false,
       HttpStatus.CREATED
     );

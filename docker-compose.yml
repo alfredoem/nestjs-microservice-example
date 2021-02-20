@@ -1,0 +1,16 @@
+version: "2.4"
+
+services:
+  postgresql:
+    container_name: nestjs-microservice-example-postgresql
+    image: postgres:11.6
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=cats_dev
+      - POSTGRES_PASSWORD=p44ssW=RD
+      - POSTGRES_USER=user_dev
+      - SCHEMA=shinra
+    command: ["postgres", "-c", "log_statement=all"]
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d

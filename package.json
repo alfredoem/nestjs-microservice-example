@@ -17,15 +17,24 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --runInBand --verbose --config ./test/jest-e2e.json"
+    "pretest:e2e": "docker-compose up -d",
+    "test:e2e": "jest --verbose --config ./test/jest-e2e.json",
+    "posttest:e2e": "docker-compose down",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config src/config/typeorm-migration.ts"
   },
   "dependencies": {
     "@nestjs/common": "^7.5.1",
     "@nestjs/core": "^7.5.1",
     "@nestjs/platform-express": "^7.5.1",
+    "@nestjs/config": "^0.5.0",
+    "@nestjs/typeorm": "^7.1.4",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.6.3"
+    "rxjs": "^6.6.3",
+    "class-validator": "^0.12.2",
+    "class-transformer": "^0.3.1",
+    "typeorm": "^0.2.26",
+    "pg": "^8.3.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.5.1",
@@ -47,9 +56,7 @@
     "ts-loader": "^8.0.8",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^4.0.5",
-    "class-validator": "^0.12.2",
-    "class-transformer": "^0.3.1"
+    "typescript": "^4.0.5"
   },
   "jest": {
     "moduleFileExtensions": [
