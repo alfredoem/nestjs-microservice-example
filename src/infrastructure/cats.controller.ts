@@ -13,9 +13,9 @@ import {
   CreateCatDto,
   UpdateCatDto,
   ListAllEntities
-} from './cats/dto/create-cat.dto';
-import { CatService } from './cats/application/cat.service';
-import { HttpResponse } from './http-response';
+} from '../domain/create-cat.dto';
+import { CatService } from '../application/cat.service';
+import { HttpResponse } from './utils/http-response';
 
 @Controller('cats')
 export class CatsController {

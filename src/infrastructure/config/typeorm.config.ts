@@ -15,7 +15,7 @@ export class TypeormConfig {
         database: configService.get<string>('DATABASE_NAME'),
         username: configService.get<string>('DATABASE_USER'),
         password: configService.get<string>('DATABASE_PASSWORD'),
-        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+        entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
         logging:
           configService.get<string>('DATABASE_LOGGING', 'false') === 'true',
         synchronize:

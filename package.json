@@ -20,7 +20,7 @@
     "pretest:e2e": "docker-compose up -d",
     "test:e2e": "jest --verbose --config ./test/jest-e2e.json",
     "posttest:e2e": "docker-compose down",
-    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config src/config/typeorm-migration.ts"
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config src/infrastructure/config/typeorm-migration.ts"
   },
   "dependencies": {
     "@nestjs/common": "^7.5.1",

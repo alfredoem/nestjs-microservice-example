@@ -8,11 +8,11 @@ const typeOrmConfig: ConnectionOptions = {
   database: process.env.DATABASE_NAME,
   username: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
-  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+  entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/../migrations/*{.ts,.js}'],
   logging: true,
   cli: {
-    migrationsDir: 'src/migrations'
+    migrationsDir: 'src/infrastructure/migrations'
   }
 };
 

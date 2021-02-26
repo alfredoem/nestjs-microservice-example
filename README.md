@@ -4,22 +4,23 @@
 * NodeJS 
 * NestJS Framework
 * Typescript
+* Docker
+    * Postgres
 
 ## Installation
 
 ```bash
-$ npm install
+$ make install
 ```
 
 ## Running the app
 
 ```bash
-$ npm run start:dev
+$ make up
 ```
 
 ## Test
 
 ```bash
-# e2e tests
-$ npm run test:e2e
+$ make test-e2e
 ```
